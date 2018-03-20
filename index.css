@@ -1,474 +1,682 @@
 body {
-    background-color:#f6f6f6;
-    font-family: 'Raleway', arial, sans-serif;
-    color:#292f33;
-    position:relative;
+  font-family: 'Raleway', arial, sans-serif;
+  color: #292f33;
+  position: relative;
 }
 
-.row {
-    margin:0;
+header {
+  position: fixed;
 }
 
 .navbar {
-    background:rgba(255,255,255,0.9);
-    font-weight:500;
+  display: none;
 }
 
-#logo {
-    height:80px;
-    position:relative;
-    float:left;
+#navbar {
+  background: rgba(255, 255, 255, 0.95);
 }
 
-#weblinks {
-    margin:25px 0 5px 10px;
-    float:left;
-    position:relative;
-    display:none;
-    white-space:nowrap;
-    overflow:hidden;
-    height:40px;
+#navbar ul {
+  margin: 4px 0 0 10px;
 }
 
-.extlogos {
-    margin-top:25px;
-    float:right;
+.navbar_contact_link img {
+  height: 35px;
+  width: auto;
+  margin: 5px 0 0 5px;
+  opacity: 0.75;
 }
 
-.extlogos img {
-    height:25px;
-    margin:5px;
-    opacity:0.8;
-
+#landing {
+  background-image: url("images/landing_background.jpg");
+  background-attachment: fixed;
 }
 
-#menuarrow {
-    float:left;
-    margin-top:15px;
-    position:relative;
-    opacity:0.8;
+.background_image {
+  background-position: center;
+  background-size: cover;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
 }
 
-.clear {
-    clear:both;
+#landing_info {
+  padding-top: 35vh;
 }
 
-#menubutton {
-    display:none;
-    width:35px;
-    padding:2px 0;
-    margin-left:10px;
+#landing_logo {
+  height: 180px;
+  margin: 0 auto;
+  display: block;
+  opacity: 0;
 }
 
-#bodycontent h2 {
-    text-align:center;
+#landing_tag {
+  font-size: 3em;
+  padding-top: 1.5vh;
+  text-align: center;
+  color: #f6f6f6;
 }
 
-#bodycontent h3 {
-    font-size:1.55em;
+.font_color_blue {
+  color: #1571b2;
 }
 
-#whitecontent a:link {
-    color:#1671b2;
+.color_white {
+  color: white;
+  border-color: white !important;
 }
 
-#whitecontent a:visited {
-    color:#1f5072;
+.web_section {
+  padding-bottom: 60px;
 }
 
-#whitecontent a:hover {
-    text-decoration:underline;
+#original_tag {
+  display: none;
 }
 
-#whitecontent a:active {
-    color:#1f5072;
+#sticking_tag {
+  display: none;
 }
 
-.jumbotron {
-    height:640px;
-    background-image:url("images/jumbotron_bg.jpg");
-    background-size:auto 220%;
-    background-position:60% 25%;
-    font-family:'Raleway', sans-serif;
-    font-weight:bold;
+.section_title {
+  font-size: 2em;
+  text-align: center;
+  margin: 40px 0;
 }
 
-.jumbotron h1 {
-    margin-top:85px;
+.title_line_border {
+  position: relative;
+  top: 60px;
+  border-bottom: 1px #1571b2 dotted;
+  width: 30%;
 }
 
-.webpart {
-    padding-top:30px;
-    padding-bottom:30px;
+.title_right {
+  float: right;
 }
 
-.webpart p {
-    padding-top:10px;
+#face {
+  height: 400px;
+  width: auto;
+  margin: -40px 40px 0 0;
+  float: left;
 }
 
-.aboutrow {
-    margin-bottom:15px;
+#about_me {
+  height: 1140px;
 }
 
-#Profile img {
-    height:auto;
-    padding:0;
-    margin-bottom:10px;
-    border-radius:30px;
+#about_me_row {
+  margin: 0px;
 }
 
-#abouttext {
-    margin-top:80px;
-    padding-left:40px;
+#about_me_text {
+  margin: 40px 0px;
 }
 
-.skillsrow ul {
-    list-style:none;
+#about_me h4 {
+  color: #1571b2;
+  margin-top: 20px;
 }
 
-.skill-to-learn {
-    opacity:0.6;
+
+#my_background_text {
+  padding-right: 50px;
 }
 
-.projectrow a:link {
-    color:#292f33 !important;
+#skills_list {
+  background-color: #1571b2;
+  height: auto;
+  color: white;
+  padding: 0px 15px;
 }
 
-.projectrow a:visited {
-    color:#292f33 !important;
+#skills_list h4 {
+  color: white;
+  text-align: justify;
 }
 
-.projectrow a:hover {
-    text-decoration:none !important;
+#skills_list img {
+  height: 40px;
+  width: auto;
+  position: absolute;
+  left: -50px;
+  top: 5px;
 }
 
-.projectrow a:active {
-    color:#292f33 !important;
+#skills_list li {
+  list-style: none;
+  margin: 8px 0 0 10px;
+  position: relative;
 }
 
-.projectbox {
-    height:220px;
-    border:3px #f6f6f6 solid;
-    text-align:center;
-    position:relative;
-    z-index: 1;
+#projects {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)),
+    url("images/projects_background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+  color: white;
+  padding-bottom: 30px;
 }
 
-.projectbox p {
-    margin:0;
-    position:relative;
-    top:40%;
-    transform:translate(0, -50%);
+#projects a, a:link, a:hover, a:visited, a:after {
+  color: white;
 }
 
-.projectbox:before {
-    content:"";
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    z-index:-1;
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size:auto 110px;
-    opacity:0.3;
+.project_box {
+  margin-bottom: 30px;
+  border: 2px white solid;
+  opacity: 0.85;
+  text-align: center;
+  filter: grayscale(20%);
 }
 
-#DWDeveloper {
-    background-color:#75b4d2;
+.project_text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 20px;
+  width: 90%;
+  opacity: 1;
 }
 
-#DWDeveloper:before {
-    background-image:url("images/DWD_Logo.png");
-    background-size:auto 70px;
+.project_box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 55%;
+  opacity: 0.6;
+  bottom: 7%;
 }
 
-#DWDBlog {
-    background-color:#C86464;
+#Kellys_World_Adventures {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #1bb0ce;
 }
 
-#DWDBlog:before {
-    background-image:url("images/DWDBlog.png");
-    background-size:auto 70px;
+#Kellys_World_Adventures:before {
+  background-image: url("images/professional_projects/kellys_world_adventures_logo.png");  
+  background-size: auto 30%;
 }
 
-.training {
-    background-color:#c9c9c9;
+#Kelly_Daniels_Photography {
+  background:
+    linear-gradient(
+    rgba(120, 120, 120, 0.4),
+    rgba(120, 120, 120, 0.4)),
+    #444444;
+}
+
+#Kelly_Daniels_Photography:before {
+  background-image: url("images/professional_projects/kelly_daniels_photography_logo.png");  
+  background-size: auto 35%;
+}
+
+#Hannah_Clarke_Films {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #2095ad;
+}
+
+#Hannah_Clarke_Films:before {
+  background-image: url("images/professional_projects/hannah_clarke_films_logo.png");  
+  background-size: auto 30%;
+}
+
+#Dean_Webb_Developer {
+  background:
+  linear-gradient(
+  rgba(0, 0, 0, 0.4),
+  rgba(0, 0, 0, 0.4)),
+  #1571b2;
+}
+
+#Dean_Webb_Developer:before {
+  background-image: url("images/personal_projects/dean_webb_developer_logo.png");
+  background-size: auto 35%;
+}
+
+#Dean_Webb_Blogging {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #c83737;
+}
+
+#Dean_Webb_Blogging:before {
+  background-image: url("images/personal_projects/dean_webb_blogging_logo.png");
+  background-size: auto 35%;
+}
+
+#HTML5 {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #e44d26;
 }
 
 #HTML5:before {
-    background-image:url("images/HTML5_logo.png");
+  background-image: url("images/training_projects/HTML5_logo.png");
+}
+
+#CSS3 {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #264de4;
 }
 
 #CSS3:before {
-    background-image:url("images/CSS3_logo.png");
+  background-image: url("images/training_projects/CSS3_logo.png");
+}
+
+#Javascript {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #d6ba32;
 }
 
 #Javascript:before {
-    background-image:url("images/Javascript_logo.png");
+  background-image: url("images/training_projects/Javascript_logo.png");
+}
+
+#jQuery {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #0868ab;
 }
 
 #jQuery:before {
-    background-image:url("images/jQuery_logo.png");
+  background-image: url("images/training_projects/jQuery_logo.png");
 }
 
-#Bootstrap:before {
-    background-image:url("images/Bootstrap_logo.png");
+#Bootstrap_4 {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)),
+    #311642;
 }
 
-#Wordpress:before {
-    background-image:url("images/Wordpress_logo.png");
+#Bootstrap_4:before {
+  background-image: url("images/training_projects/Bootstrap_logo.png");
+}
+
+#WordPress {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #464442;
+}
+
+#WordPress:before {
+  background-image: url("images/training_projects/Wordpress_logo.png");
+}
+
+#PHP {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #484c89;
 }
 
 #PHP:before {
-    background-image:url("images/PHP_logo.svg");
+  background-image: url("images/training_projects/PHP_logo.svg");
+  background-size: auto 40%;
 }
 
-#MySQL:before {
-    background-image:url("images/MySQL_logo.svg");
+#mySQL {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #00618a;
 }
 
-#API:before {
-    background-image:url("images/API.png");
+#mySQL:before {
+  background-image: url("images/training_projects/MySQL_logo.svg");
+  background-size: auto 38%;
 }
 
-#Mobile:before {
-    background-image:url("images/Mobile_logo.png");
+#APIs {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #000000;
+}
+
+#APIs:before {
+  /*background-image: url("images/training_projects/API_logo.png");*/
+}
+
+#Mobile_Apps {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #000000;
+}
+
+#Mobile_Apps:before {
+  /*background-image: url("images/training_projects/MobileApp_logo.png");*/
+}
+
+#Python {
+  background:
+    linear-gradient(
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)),
+    #3772a3;
 }
 
 #Python:before {
-    background-image:url("images/Python_logo.png");
+  background-image: url("images/training_projects/Python_logo.png");
 }
 
-.quote {
-    text-align:center;
-    font-size:1.2em;
-    margin:100px;
+#contact_me h4 {
+  color: #1571b2;
 }
 
-#Contact {
-    background-color:#1671b2;
-    color:#e1e8ed;
-    text-align:center;
+.alert {
+  padding-top: 20px;
 }
 
-#Contact a:link {
-    color:white;
+#contact_links {
+  padding-left: 15px;
 }
 
-#Contact a:visited {
-    color:white;
+#contact_me a {
+  color: #292f33;
+  opacity: 0.85;
 }
 
-#Contact a:hover {
-    text-decoration:none;
+#contact_me a:hover {
+  text-decoration: none;
 }
 
-#Contact a:active {
-    color:white;
+#form_alert {
+  float: right;
+  width: 450px;
 }
 
-#Contact ul{
-    list-style:none;
-    text-align:left;
-    padding:30px 0;
-    white-space:nowrap;
-    overflow:visible;
+.contact_link {
+  height: 75px;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
 }
 
-#Contact li{
-    height:60px;
-    margin-bottom:10px;
+.contact_link img {
+  height: 60px;
+  width: auto;
+  position: relative;
+  margin-right: 20px;
 }
 
-#Contact img {
-    height:38px;
+#dean_webb_blogging_link img {
+  height: 160px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  padding-top: 20px;
+  opacity: 0.75;
 }
 
-#Contact span {
-    margin-left:10px;
+.credits {
+  margin: 0;
+  padding: 20px;
+  height: 100%;
+  background-color: #292f33;
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
 }
 
-.contactlink {
-    opacity:0.8;
+.credits a, a:link, a:active, a:after {
+  color: white;
 }
 
-#blog img {
-    height:110px;
-    padding:10px;
-    margin:20px;
-    background-color:#292f33;
-    border-radius:5px;
-}
-
-#basebar {
-    margin:0;
-    padding:20px;
-    height:120px;
-    background-color:#292f33;
-    color:white;
-    font-size:0.8em;
-    text-align:center;
-}
-
-#basebar a:link {
-    color:white;
-}
-
-#basebar a:visited {
-    color:#c9c9c9;
-}
-
-#basebar a:hover {
-    text-decoration:underline;
-}
-
-#basebar a:active {
-    color:#c9c9c9;
+.credits a:visited {
+  color: #c9c9c9;
 }
 
 @media screen and (max-width: 1199px) {
 
-    #abouttext {
-        margin-top:60px;
-        padding-left:20px;
-    }
+  .title_line_border {
+    width: 25%;
+  }
+
+  #about_me {
+    height: 1200px;
+  }
+
+  #about_me_text {
+    margin: 0  0 40px 0;
+  }
+
+  #face {
+    margin-top: 0;
+  }
+
+  #form_alert {
+    width: 360px;
+  }  
 
 }
 
-@media screen and (max-width: 62em) {
+@media screen and (max-width: 992px) {
 
-    .extlogos {
-        width:120px;
-        display:block;
-        margin-top:8px;
-    }
+  #landing_logo {
+    height: 150px;
+  }
 
-    .jumbotron h1 {
-        margin-top:80px;
-    }
+  #landing_tag {
+    font-size: 2.4em;
+  }
 
-    #abouttext {
-        margin-top:30px;
-        padding-left:20px;
-    }
+  .title_line_border {
+    width: 20%;
+  }
 
-}
+  #about_me {
+    height: 1500px;
+  }
+  
+  #about_me_row {
+    margin-left: 0px;
+  }
 
-@media screen and (max-width: 48em) {
+  #face {
+    height: 400px;
+    margin: 35px 35px 35px 0;
+  }
 
-    #logo {
-        height:55px;
-        top:2px;
-        float:left;
-    }
+  #about_me_text {
+    margin-bottom: 10px;
+  }
 
-    #weblinks {
-        display:none !important;
-    }
+  #my_background_text {
+    padding: 0;
+    margin-bottom: 30px;
+  }
 
-    #menuarrow {
-        display:none;
-    }
+  #skills_list img {
+    display: none;
+  }
 
-    #group {
-        width:290px;
-        margin:15px auto;
-        float:right;
-    }
+  #skills_list li {
+    list-style: circle;
+    margin-left: -20px;
+  }
 
-    #menubutton {
-        display:inline;
-    }
+  #contact_me form {
+    margin-bottom: 50px;
+  }
 
-    .dropdown-menu {
-        top:79px;
-        width:100%;
-        text-align:center;
-    }
-
-    .extlogos {
-        display:inline;
-        margin:10px 5px;
-        text-align:center;
-        white-space:nowrap;
-        overflow:hidden;
-        height:40px;
-        float:none;
-        }
-
-    .jumbotron {
-        height:440px;
-        margin-top:0;
-    }
-
-    #abouttext {
-        margin-top:15px;
-        padding-left:0;
-    }
-
-    #Contact span {
-        display:none;
-    }
-
-    #Contact li{
-        text-align:center;
-    }
+  #form_alert {
+    width: 600px;
+  }  
 
 }
 
-@media screen and (max-width: 38em) {
+@media screen and (max-width: 766px) {
 
-    #logo {
-        margin:0 auto 10px auto;
-        height:80px;
-        text-align:center;
-        float:none;
-    }
+  #navbar_content {
+    text-align: center;
+  }
 
-    #group {
-        margin:0 auto;
-        float:none;
-    }
+  .navbar_contact_links {
+    display: none;
+  }
 
-    .dropdown-menu {
-        top:147px;
-    }
+  #landing_logo {
+    height: 115px;
+  }
 
-    .navbar-brand {
-        width:100%;
-        margin:0 auto;
-    }
+  #landing_tag {
+    font-size: 1.9em;
+  }
 
-    .jumbotron {
-        height:540px;
-    }
+  .title_line_border {
+    display: none;
+  }
 
-    .jumbotron h1 {
-        margin-top:150px;
-    }
+  #about_me {
+    height: 1710px;
+  }
 
-    .smallclear {
-        clear:both;
-    }
+  #face {
+    display: none;
+  }
 
-    #smallmenu {
-        font-size:1.1em;
-    }
+  #about_me_text {
+    background:
+      linear-gradient(
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.7)),
+      url("images/face.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
-    .active {
-        width:95%;
-        margin:0 auto;
-        background-color:#1671b2;
-    }
+  .title_line_border {
+    display:none;
+  }
 
-    #Contact li{
-        padding:0;
-    }
+  .section_title {
+    padding-top: 30px;
+  }
 
-    #basebar {
-        height:200px;
-    }
+  #dean_webb_blogging_link img {
+    height: 120px;
+  }
+
+  #form_alert {
+    width: 420px;
+  }  
+
+}
+
+@media screen and (max-width: 575px) {
+  
+  #landing_logo {
+    height: 85px;
+  }
+
+  #landing_tag {
+    font-size: 1.4em;
+  }
+
+  #about_me {
+    height: auto;
+  }
+
+  #about_me_row {
+    margin: 0 15px;
+  }
+
+  .project_box:before {
+    display: none;
+  }
+
+  .project_box {
+    margin-bottom: 12px;
+    border-width: 2px;
+  }
+
+  .project_text {
+    padding-top: 14px;
+  }
+
+  .project_description {
+    display: none;
+  }
+
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #contact_links span {
+    display: none;
+  }
+
+  #contact_links {
+    text-align: center;
+    margin: 0;
+  }
+  
+  #contact_me {
+    margin: 0;
+  }  
+
+  #form_alert {
+    margin-top: 20px;
+    float: auto;
+    width: auto;
+  }
+
+@media screen and (max-width: 320px) {
+
+  #landing_logo {
+    height: 70px;
+  }
+
+  #landing_tag {
+    font-size: 1em;
+  }
+
+  #dean_webb_blogging_link img {
+    height: 100px;
+  }
 
 }

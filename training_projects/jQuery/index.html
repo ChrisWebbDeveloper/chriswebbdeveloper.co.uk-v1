@@ -1,0 +1,299 @@
+<html>
+
+<head>
+
+	<title>jQuery Training - Dean webb Developer</title>
+
+	<link rel="stylesheet" type="text/css" href="jquery-ui.css">
+
+	<style type="text/css">
+
+		body {
+			padding:0;
+			margin:0;
+			font-family:helvetica, arial, sans-serif;
+		}
+
+		#topbar {
+			width:100%;
+			height:50px;
+			background-color:lightgrey;
+			border-bottom:1px solid black;
+		}
+
+		#title {
+			font-size:1.8em;
+			margin:9px;
+			position:relative;
+			float:left;
+		}
+
+		#menubar {
+			font-size:0.8em;
+			float:left;
+			position:relative;
+			margin:11px 0px 0px 20px;
+		}
+
+		.toggle {
+			font-size:1.1em;
+			float:left;
+			padding:5px;
+			background-color:white;
+			border:1px solid grey;
+			border-right:none;
+		}
+
+		.active {
+			background-color:lightblue;
+			display:block !important;
+		}
+
+		#HTMLButton {
+			border-top-left-radius:5px;
+			border-bottom-left-radius:5px;
+
+			border-left:1px solid grey;
+		}
+
+		#OutputButton {
+			border-top-right-radius:5px;
+			border-bottom-right-radius:5px;
+			border-right:1px solid grey;
+		}
+
+		#main-body {
+
+			width:100%;
+			height:90%;
+		}
+
+
+
+		#main-body div {
+
+			border-style:none;
+			height:100%;
+			float:left;
+			display:none;
+		}
+
+		#main-body div {
+
+			height:100%;
+			padding-top:-20px;
+
+			padding:5px;
+			line-height:5px;
+		}
+
+
+
+		#main-body h3 {
+
+			font-size:1.1em;
+			color:#252529;
+			font-weight:normal;
+		}
+
+		#main-body textarea {
+			margin:0;
+			width:100%;
+			height:95%;
+		}
+
+		#main-body iframe {
+			margin:0;
+			width:100%;
+			height:95%;
+			border:2px solid grey;
+		}
+
+	</style>
+
+
+
+
+	<!-- START of Training Return Button CSS-->
+
+		<!-- Raleway Font -->
+		<link href='https://fonts.googleapis.com/css?family=Raleway:400,500,700,400italic' rel='stylesheet' type='text/css'>
+		<!-- jQuery Stylesheet -->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+		<!-- Main Stylesheet -->
+		<link rel="stylesheet" type="text/css" href="../training_button.css">
+
+	<!-- END of Training Return Button CSS-->
+
+
+
+</head>
+
+<body>
+
+
+
+
+        <!-- START of Training Return Button HTML-->
+
+		<a href="../../index.html#projects" id="training_button" name="training_button">
+			<div>
+              <p>Click here to return</p>
+              <img src="../../images/landing_logo.png" alt="Dean Webb Developer">
+			</div>
+		</a>
+
+        <!-- END of Training Return Button HTML-->
+
+
+
+	<div id="topbar">
+
+		<h1 id="title">CodePlayer</h1>
+
+			<div id="menubar">
+
+				<input type="button" value="HTML" class="toggle" id="HTMLButton">
+				<input type="button" value="CSS" class="toggle" id="CSSButton">
+				<input type="button" value="JavaScript" class="toggle" id="JavaScriptButton">
+
+				<input type="button" value="Output" class="toggle" id="OutputButton">
+
+			</div>
+
+
+	</div>
+
+	<div id="main-body">
+
+		<div id="HTML">
+
+			<h3>HTML</h3>
+
+			<textarea id="HTMLText"><p id="p">Hello World!</p></textarea>
+
+		</div>
+
+
+		<div id="CSS">
+
+			<h3>CSS</h3>
+
+			<textarea id="CSSText">#p {color:blue;}</textarea>
+
+		</div>
+
+		<div id="JavaScript">
+
+			<h3>JavaScript</h3>
+
+			<textarea id="JavaScriptText">document.getElementById("p").innerHTML ="Hello Chris!"</textarea>
+
+		</div>
+
+
+		<div id="Output">
+
+			<h3>Output</h3>
+
+			<iframe id="outputinfo"></iframe>
+
+		</div>
+
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js" integrity="sha256-55Jz3pBCF8z9jBO1qQ7cIf0L+neuPTD1u7Ytzrp2dqo=" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+
+		function updateOutput() {
+
+			$("iframe").contents().find("HTML").html("<html><head><style type='text/css'>" + $("#CSSText").val()
+			+ "</style></head><body>" + $("#HTMLText").val() + "</body></html>");
+			document.getElementById("outputinfo").contentWindow.eval(($("#JavaScriptText").val()));
+		}
+
+		//below: button animations//
+
+		$(".toggle").hover( function() {
+			$(this).css("background-color", "#ff9e45");
+		}, function() {
+			$(this).css("background-color", "");
+		});
+
+		$(".toggle").mousedown( function() {
+			$(this).css("font-weight", "bold");
+			$(this).css("color", "white");
+			$(this).css("background-color", "#252529");
+		});
+
+		$(".toggle").mouseup( function() {
+			$(this).css("font-weight", "normal");
+			$(this).css("color", "black");
+			$(this).css("background-color", "");
+		});
+
+		$(".toggle").click( function() {
+
+			//below: activating divs//
+
+			$(this).toggleClass("active");
+
+			//below: determining width of divs//
+
+
+
+			var numItems = $(".active").length;
+			var divWidth = 96 / numItems + "%";
+			$("#main-body div").css("width", divWidth);
+
+
+		});
+
+		$("#HTMLButton").on("click", function(event) {
+			$("#HTML").toggle("show");
+		});
+
+		$("#CSSButton").on("click", function(event) {
+			$("#CSS").toggle("show");
+		});
+
+		$("#JavaScriptButton").on("click", function(event) {
+			$("#JavaScript").toggle("show");
+		});
+
+		$("#OutputButton").on("click", function(event) {
+
+			$("#Output").toggle("show");
+		});
+
+		updateOutput();
+
+		$("textarea").on("change keyup paste", function() {
+			updateOutput();
+		});
+
+	</script>
+
+
+
+
+
+	<!-- START of Training Return Button JS-->
+
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<!-- jQuery UI -->
+		<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+		<!-- Main Script -->
+		<script src="../training_button.js"></script>
+
+	<!-- END of Training Return Button JS-->
+
+
+
+    </body>
+
+</html>
