@@ -1,16 +1,16 @@
 $(document).ready(function(){
 
-  
+
   //Bootstrap scrollspy
-    
+
   if ($(window).width() >= 766) {
-    
+
     $('body').scrollspy({ target: '#navbar', offset: 60 });
-    
+
   } else {
-    
+
     $('body').scrollspy({ target: '#navbar', offset: 178 });
-    
+
   }
 
   //Add smooth scrolling on all links inside the navbar
@@ -27,13 +27,13 @@ $(document).ready(function(){
 
       //Using jQuery's animate() method to add smooth page scroll
       //The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      
+
 
       if ($(window).width() >= 766) {
-    
+
         $('html, body').animate({
 
-          scrollTop: $(hash).offset().top - 60       
+          scrollTop: $(hash).offset().top - 60
 
         }, 800, function(){
 
@@ -41,12 +41,12 @@ $(document).ready(function(){
         window.location.hash = hash;
 
         });
-        
+
       } else {
-    
+
         $('html, body').animate({
 
-          scrollTop: $(hash).offset().top - 178     
+          scrollTop: $(hash).offset().top - 178
 
         }, 800, function(){
 
@@ -54,13 +54,13 @@ $(document).ready(function(){
         window.location.hash = hash;
 
         });
-        
+
       }
 
     } // End if
 
   });
-  
+
 
   //Set navbar to open after landing page
 
@@ -79,7 +79,7 @@ $(document).ready(function(){
       }
 
   });
-  
+
 
   //Animation of navbar contact links
 
@@ -106,7 +106,7 @@ $(document).ready(function(){
   });
 
   $(window).trigger('resize');
-  
+
 
   //Animation for landing page
 
@@ -116,7 +116,7 @@ $(document).ready(function(){
     $('#sticking_tag').fadeIn(1500);
 
   });
-  
+
 
   //Setting height of project boxes equal to width even with screen resize
 
@@ -137,7 +137,7 @@ $(document).ready(function(){
   });
 
   $(window).resize();
-  
+
 
   //Animation of project boxes
 
@@ -170,46 +170,46 @@ $(document).ready(function(){
     return false;
 
   });
-  
-  
+
+
   //Submission of contact form
-  
+
   var form = $('#contact_form');
   var alert = $('#form_alert');
-  
-  	//Cancels the form submission  
+
+  	//Cancels the form submission
   $(form).submit(function(event) {
-        
+
     event.preventDefault();
-        
-    //Serialize the form data    
+
+    //Serialize the form data
     var form_data = $(form).serialize();
-    
-    //Submit the form using AJAX    
+
+    //Submit the form using AJAX
     $.ajax ({
       type: 'POST',
       url: $(form).attr('action'),
       data: form_data
     })
-  
+
     .done(function(response) {
-    
+
       $(alert).removeClass('alert-danger');
       $(alert).addClass('alert-success');
 
       //Set the message text
       $(alert).text(response);
 
-      //Clear the form    
+      //Clear the form
       $('#form_email').val('');
-      $('#form_name').val('');    
+      $('#form_name').val('');
       $('#form_subject').val('');
       $('#form_message').val('');
-      
+
     })
-  
+
     .fail(function(data) {
-    
+
       $(alert).removeClass('alert-success');
       $(alert).addClass('alert-danger');
 
@@ -219,11 +219,11 @@ $(document).ready(function(){
       } else {
           $(alert).text('An error has occurred and your message cannot be sent. Try again or use the manual link to the right (sorry!)');
       }
-      
+
     });
-    
+
   });
-    
+
 
   //Animation of contact links
 
@@ -257,4 +257,3 @@ $(document).ready(function(){
   $(window).bind('beforeunload', function(){
     return 'Are you sure you want to leave?';
   });
-
