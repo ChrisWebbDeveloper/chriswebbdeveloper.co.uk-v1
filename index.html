@@ -1,0 +1,446 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    <title>Dean Webb Developer</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js" integrity="sha256-55Jz3pBCF8z9jBO1qQ7cIf0L+neuPTD1u7Ytzrp2dqo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+    <script src="bootstrap-autohidingnavbar-1.0.5/dist/jquery.bootstrap-autohidingnavbar.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <link rel="icon" href="images/DWD_Logo icon.ico">
+
+</head>
+
+
+
+<body data-spy="scroll" data-target="#navbar" data-offset="300">
+
+    <nav class="navbar navbar-fixed-top navbar-light nav-down" id="navbar">
+
+        <div id="navcontainer" class="container">
+
+            <a class="navbar-brand" href=""><img src="images/DWD_Logo.png" id="logo" alt="Dean Webb Developer" /></a>
+
+            <!-- Disappears on mobile -->
+
+            <ul class="nav navbar-nav" id="weblinks">
+
+                <li class="nav-item text-xs-center">
+                    <a class="nav-link" href="#Profile">Profile</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#Projects">Projects</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#Testimonials">Testimonials</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#Contact">Contact</a>
+                </li>
+
+            </ul>
+
+            <!-- Mobile Dropdown -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="weblinks" id="menuarrow"><img src="images/menuarrow1.png" alt=">"/></button>
+
+            <div class="smallclear"></div>
+
+            <div id="group">
+
+                <button type="button" id="menubutton" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                &#9776;
+                </button>
+
+                <div id="smallmenu" class="dropdown-menu">
+
+                    <a class="dropdown-item" href="#Profile">Profile <span class="sr-only">(current)</span></a>
+                    <a class="dropdown-item" href="#Projects">Projects</a>
+                    <a class="dropdown-item" href="#Testimonials">Testimonials</a>
+                    <a class="dropdown-item" href="#Contact">Contact</a>
+
+                </div>
+
+                <div class="extlogos">
+
+                    <a href="https://twitter.com/DWebbDeveloper"><img src="images/twitter.png" alt="TW" id="twitter" /></a>
+                    <a href="https://www.facebook.com/deanwebbdeveloper/"><img src="images/facebook.png" alt="FB" id="facebook" /></a>
+                    <a href="https://www.instagram.com/deanwebbdeveloper/?hl=en"><img src="images/instagram.png" alt="IG" id="instagram" /></a>
+                    <a href="https://www.linkedin.com/in/dean-webb-54406b121"><img src="images/linkedin.png" alt="IN" id="linkedin" /></a>
+                    <a href="https://github.com/DeanWebbDeveloper"><img src="images/github.png" alt="GH" id="github" /></a>
+                    <a href="mailto:dean@deanwebbdeveloper.com"><img src="images/email.png" alt="@" id="email" /></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="clear"></div>
+
+    <div id="bodycontent">
+
+        <div id="whitecontent">
+
+            <div class="jumbotron jumbotron-fluid" >
+
+                <div class="container">
+
+                    <h1 class="display-4">Beauty By Design</h1>
+                    <p class="lead">Elegant. Creative. Beautiful</p>
+
+                </div>
+
+            </div>
+
+            <div class="container">
+
+                <div class="webpart" id="Profile">
+
+                    <h2 class=display-5>Profile</h2>
+                    <hr />
+
+                    <h3>About me</h3>
+                    <br/>
+
+                    <div class="row aboutrow">
+
+                        <img src="images/aboutme.jpg" class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+
+                        <p id="abouttext" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">Hello there! I am Christopher
+                        Dean Webb, a full stack webb developer in training. An avid learner, I have taught myself
+                        the joys of coding and web development from a wide array of sources, such as <a href="https://www.udemy.com/">Udemy</a>,
+                        <a href="https://www.codecademy.com/">CodeAcademy</a>, and <a href="http://www.theodinproject.com/">The Odin Project</a>. I love the beauty in the logic behind it, and I am
+                        going to broaden my horizon to new languages and how to apply them in unique and
+                        interesting ways. This website is a trial of my own bidding to see what I can accomplish.</p>
+
+                    </div>
+
+                    <h3>Skills</h3>
+
+                    <p>Skills I have acquired in and out of the realm of web development over the years:</p>
+                    <br/>
+
+
+
+                    <div class="row skillsrow">
+
+                        <ul class="col-lg-5 col-lg-offset-0 col-md-5 col-md-offset-1 col-sm-12 col-xs-12">
+                            <li><strong>Developer Skills</strong></li>
+                            <br />
+                            <li>HTML5</li>
+                            <progress class="progress" value="60" max="100">60%</progress>
+                            <li>CSS3</li>
+                            <progress class="progress" value="50" max="100">50%</progress>
+                            <li>Javascript</li>
+                            <progress class="progress" value="35" max="100">35%</progress>
+                            <li>jQuery</li>
+                            <progress class="progress" value="40" max="100">40%</progress>
+                            <li>Bootstrap 4</li>
+                            <progress class="progress" value="40" max="100">40%</progress>
+                            <li class="skill-to-learn">Wordpress*</li>
+                            <progress class="progress progress-danger" value="5" max="100">5%</progress>
+                            <li class="skill-to-learn">PHP*</li>
+                            <progress class="progress progress-danger" value="0" max="100">0%</progress>
+                            <li class="skill-to-learn">MySQL*</li>
+                            <progress class="progress progress-danger" value="0" max="100">0%</progress>
+                            <li class="skill-to-learn">Python*</li>
+                            <progress class="progress progress-danger" value="0" max="100">0%</progress>
+                            <li class="skill-to-learn">Ruby*</li>
+                            <progress class="progress progress-danger" value="0" max="100">0%</progress>
+                            <li class="skill-to-learn">Ruby On Rails*</li>
+                            <progress class="progress progress-danger" value="0" max="100">0%</progress>
+                            <li class="skill-to-learn">Command Line</li>
+                            <progress class="progress progress-danger" value="10" max="100">10%</progress>
+                        </ul>
+
+                        <ul class="col-lg-5 col-lg-offset-0 col-md-5 col-md-offset-1 col-sm-12 col-xs-12">
+                            <li><strong>Other Skills</strong></li>
+                            <br />
+                            <li>Windows</li>
+                            <progress class="progress" value="90" max="100">90%</progress>
+                            <li class="skill-to-learn">Mac*</li>
+                            <progress class="progress progress-danger" value="15" max="100">20%</progress>
+                            <li class="skill-to-learn">Linux*</li>
+                            <progress class="progress progress-danger" value="25" max="100">25%</progress>
+                            <li>Atom</li>
+                            <progress class="progress" value="60" max="100">60%</progress>
+                            <li>MS Office Suite</li>
+                            <progress class="progress" value="80" max="100">80%</progress>
+                            <li>Google Drive</li>
+                            <progress class="progress" value="60" max="100">60%</progress>
+                            <li>Adobe Photoshop</li>
+                            <progress class="progress" value="50" max="100">50%</progress>
+                            <li>GIMP</li>
+                            <progress class="progress" value="40" max="100">40%</progress>
+                            <li>Adobe Illustrator</li>
+                            <progress class="progress" value="40" max="100">40%</progress>
+                            <li>Inkscape</li>
+                            <progress class="progress" value="30" max="100">30%</progress>
+                            <li>Teamwork</li>
+                            <progress class="progress" value="90" max="100">90%</progress>
+                            <li>Determination</li>
+                            <progress class="progress" value="100" max="100">100%</progress>
+
+                        </ul>
+
+                    </div>
+
+                        <p>*<span class="skill-to-learn">Blanked out skills</span> are skills that I will be gaining more experience with before I can use them with confidence</p>
+
+                    </div>
+
+                <div class="webpart" id="Projects">
+
+                    <h2 class=display-5>Projects</h2>
+                    <hr />
+
+                    <h3>Professional Projects</h3>
+
+                    <p>Why not be the first? Good things can come of it.</p>
+
+                    <br />
+
+                    <h3>Personal Projects</h3>
+
+                    <p>Sites and apps I have made for my own enjoyment</p>
+
+                    <br />
+
+                    <div class="row projectrow">
+
+                        <a href="index.html">
+
+                            <div class="projectbox personal col-lg-3 col-md-6 col-sm-6" id="DWDeveloper">
+
+                                <p><strong>Dean Webb Developer</strong></p><p><em>You're here right now!</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="http://79.170.44.126/deanwebbdeveloping.com/wordpress">
+
+                            <div class="projectbox personal col-lg-3 col-md-6 col-sm-6" id="DWDBlog">
+
+                                <p><strong>Dean Webb Developing</strong></p><p><em>My WordPress Blog. Experience me and my world!</em><p>
+
+                            </div>
+
+                        </a>
+
+                      </a>
+
+                    </div>
+
+                    <br />
+
+                    <h3>Training Projects</h3>
+
+                    <p>Following <a href="https://www.udemy.com/the-complete-web-developer-course-2/"> Rob Percival's <em>The Complete Web Developer Course 2.0</em></a></p>
+
+                    <div class="row projectrow">
+
+                        <a href="HTML5 Training.html">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="HTML5">
+
+                                <p><strong>HTML5</strong></p> <p><em>Putting it all together</em><p>
+
+                            </div>
+                        </a>
+
+                        <a href="CSS3 Training.html">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="CSS3">
+
+                                <p><strong>CSS3</strong></p> <p><em>Recreating BBC News</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="Javascript Training.html">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="Javascript">
+
+                                <p><strong>Javascript</strong></p> <p><em>Reaction Tester</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="jQuery Training.html">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="jQuery">
+
+                                <p><strong>jQuery</strong></p> <p><em>Code Player</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="Bootstrap Training.html">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="Bootstrap">
+
+                                <p><strong>Bootstrap</strong></p> <p><em>App Landing Page</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="http://79.170.44.126/deanwebbdeveloping.com/wordpress/">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="Wordpress">
+
+                                <p><strong>Wordpress</strong></p> <p><em>Dean Webb Developing Blog Site</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="PHP">
+
+                                <p><strong>PHP</strong></p> <p><em>&#91;In progress&#93;</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="MySQL">
+
+                                <p><strong>MySQL</strong></p> <p><em>&#91;In progress&#93;</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="API">
+
+                                <p><strong>APIs</strong></p> <p><em>&#91;In progress&#93;</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="Mobile">
+
+                                <p><strong>Mobile Apps</strong></p> <p><em>&#91;In progress&#93;</em><p>
+
+                            </div>
+
+                        </a>
+
+                        <a href="">
+
+                            <div class="projectbox training col-lg-3 col-md-6 col-sm-6" id="Python">
+
+                                <p><strong>Python</strong></p> <p><em>&#91;In progress&#93;</em><p>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="webpart" id="Testimonials">
+
+                    <h2 class=display-5>Testimonials</h2>
+                    <hr />
+
+                    <p class="quote"><a href="index.html"><em>"Wow, look how pretty and well-made this site is!"</em> - Me</a></p>
+
+                    <p class="quote"><a href="index.html"><em>"These could be your words!"</em> - Myself</a></p>
+
+                    <p>Want to give a good word? Work with me and let me know how I do. I am willing to work hard to give you the best product I can, and in a reasonable time period.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="webpart" id="Contact">
+
+            <div class="container">
+
+            <h2 class=display-5>Connect With Me</h2>
+            <hr />
+
+            <p>Want to work or follow me? Get in touch:</p>
+
+            <div class="row contactrow">
+
+                <ul>
+
+                    <a href="mailto:dean@deanwebbdeveloper.com"><li class="contactlink col-lg-4 col-md-6 col-sm-2 col-xs-2"><img src="images/whiteemail.png" alt=""/><span>dean@deanwebbdeveloper.com</span></li></a>
+                    <a href="https://twitter.com/DWebbDeveloper"><li class="contactlink col-lg-4 col-md-6 col-sm-2 col-xs-2"><img src="images/whitetwitter.png" alt=""/><span>@DWebbDeveloper</span></li></a>
+                    <a href="https://www.facebook.com/deanwebbdeveloper/"><li class="contactlink col-lg-4 col-md-6 col-sm-2 col-xs-2"><img src="images/whitefacebook.png" alt=""/><span>@deanwebbdeveloper</span></li></a>
+                    <a href="https://www.instagram.com/deanwebbdeveloper/?hl=en"><li class="contactlink col-lg-4 col-md-6 col-sm-2 col-xs-2"><img src="images/whiteinstagram.png" alt=""/><span>@deanwebbdeveloper</span></li></a>
+                    <a href="https://www.linkedin.com/in/dean-webb-54406b121"><li class="contactlink col-lg-4 col-md-6 col-sm-2 col-xs-2"><img src="images/whitelinkedin.png" alt=""/><span>dean-webb-54406b121</span></li></a>
+                    <a href="https://github.com/DeanWebbDeveloper"><li class="contactlink col-lg-4 col-md-6 col-sm-2 col-xs-2"><img src="images/whitegithub.png" alt=""/><span>DeanWebbDeveloper</span></li></a>
+
+                </ul>
+
+            </div>
+
+            <p>Or you can learn more about what I do in my spare time on my WordPress blog:</p>
+
+            <a href="http://79.170.44.126/deanwebbdeveloping.com/wordpress" class="contactlink" id="blog"><img src="images/DWDBlog.png" alt="Dean Webb Developing"/></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="basebar">
+
+        <div class="container">
+
+        <p>Font: <a href="https://www.google.com/fonts/specimen/Raleway">Raleway</a> &nbsp;
+        Jumbotron Background Image: <a href="https://unsplash.com/photos/4O_gBjrlssQ">Matt Cannon</a> &nbsp;
+        Designed with <a href="https://jquery.com/">jQuery</a>, <a href="http://jqueryui.com/">jQuery UI</a>,
+        <a href="http://v4-alpha.getbootstrap.com/">Bootstrap 4</a> and
+        <a href="http://www.virtuosoft.eu/code/bootstrap-autohidingnavbar/">Bootstrap Auto-Hide Navbar</a> &nbsp;
+        All logos taken from <a href="https://commons.wikimedia.org/">Wikimedia Commons</a> or their respective sites</a></p>
+
+        <p>Designed by <a href="http://www.deanwebbdeveloper.com">Christopher Dean Webb / Dean Webb Developer</a></p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
