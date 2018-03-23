@@ -99,14 +99,14 @@ header {
 }
 
 #face {
-  height: 400px;
+  height: 500px;
   width: auto;
   margin: -40px 40px 0 0;
   float: left;
 }
 
 #about_me {
-  height: 1140px;
+  height: 1340px;
 }
 
 #about_me_row {
@@ -475,7 +475,7 @@ header {
   }
 
   #about_me {
-    height: 1200px;
+    height: 1440px;
   }
 
   #about_me_text {
@@ -507,7 +507,7 @@ header {
   }
 
   #about_me {
-    height: 1500px;
+    height: 1700px;
   }
 
   #about_me_row {
@@ -570,7 +570,7 @@ header {
   }
 
   #about_me {
-    height: 1710px;
+    height: 1850px;
   }
 
   #face {
