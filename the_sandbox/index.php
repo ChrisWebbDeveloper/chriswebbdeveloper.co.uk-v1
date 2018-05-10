@@ -1,6 +1,120 @@
-<!DOCTYPE html>
+<?php
 
-<?php session_start() ?>
+  session_start();
+
+  if (isset($_POST)) {
+
+    $error = "";
+    $alert = "";
+
+    if(array_key_exists("submit_email",$_POST) OR array_key_exists("submit_password", $_POST)) {
+
+      //Validating input values email & password
+
+      $email = $_POST["submit_email"];
+      $pass = $_POST["submit_password"];
+
+      if(!isset($email) OR $email == null) {
+
+        $error .= "You have not entered an email <br />";
+
+      } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+        $error .= "The format you have entered for you email is invalid <br />";
+
+      };
+
+      if(!isset($pass) OR $pass == null) {
+
+        $error .= "You have not entered a password <br />";
+
+      };
+
+      if($error != "" OR $error != null) {
+
+        $alert = "<span class ='error'>The following errors are present above: <br />" . $error . "Please fix these and try again.</span>";
+
+      } else {
+
+        $link =		mysqli_connect("shareddb1a.hosting.stackcp.net", "cl59-diary", "nXhHC3B/c", "cl59-diary");		//enter db details
+        $email =	mysqli_real_escape_string($link, $email);
+        $pass =		mysqli_real_escape_string($link, $pass);
+
+        if(mysqli_connect_error()) {
+
+          die("Could not connect to server");
+
+        } else {
+
+          if (isset ($_POST["stay_signed_in"])) {
+
+              setcookie("email_cook", $email, time() + 60 * 60 * 24 * 365);
+
+          } else {
+
+              setcookie("email_cook", '', time() - 3600);
+
+          };
+
+          if(isset($_POST["signup_button"])) {
+
+            $query = "SELECT `email` FROM `users` WHERE `email` = '" . $email . "'";
+
+            $result = mysqli_query($link, $query);
+
+            if(mysqli_num_rows($result) > 0) {
+
+              $alert = "There is already an account with this email. Login instead!";
+
+            } else {
+
+              $query = "INSERT INTO `users` (`email`, `password`) VALUES ('" . $email . "', '" . password_hash($pass, PASSWORD_DEFAULT) . "')";
+
+              if(mysqli_query($link, $query)) {
+
+                $alert = "<span class='success'>You have successfully signed up, try logging in now!</span>";
+
+              } else {
+
+                $alert = "<span class='error'>We could not sign you up at this time. Please try again later.</span>";
+
+              };
+
+            };
+
+          } else if (isset($_POST["login_button"])) {
+
+            $query = "SELECT `id`, `email`, `password` FROM `users` WHERE `email` = '" . $email . "'";
+
+            $result = mysqli_query($link, $query);
+
+            $row = mysqli_fetch_array($result);
+
+            if (password_verify($pass, $row["password"])) {
+
+              $_SESSION["email"] = $row["email"];
+              $_SESSION["id"] = $row["id"];
+              header("Location: login.php");
+
+            } else {
+
+              $alert = "<span class='error'>The login details you have provided are incorrect. Please try again. <span class='switch to_signup'>If you have not got an account, click here to Sign up!</span></span>";
+
+            };
+
+          };
+
+        };
+
+      };
+
+    };
+
+  };
+
+?>
+
+<!DOCTYPE html>
 
 <html>
 
@@ -83,99 +197,9 @@
 
         </style>
 
-    </head>
+      </head>
 
-    <body>
-
-        <?php
-
-          if (array_key_exists('submit_email', $_POST) OR array_key_exists('submit_password', $_POST)) {
-
-              $error = "";
-              $alert;
-
-              if ($_POST["submit_email"] && filter_var($_POST["submit_email"], FILTER_VALIDATE_EMAIL) === false) {
-
-                  $error .= ("The email address provided is in an invalid format. <br/>");
-
-              }
-
-              if ($_POST["submit_email"] == null) {
-
-                  $error .= ("You have not input an email. <br/>");
-
-              }
-
-              if ($_POST["submit_password"] == null) {
-
-                  $error .= ("You have not input a password. <br/>");
-
-              }
-
-              if ($error != "") {
-
-                  $alert = $error;
-
-                } else {
-
-                  $link = mysqli_connect("shareddb1a.hosting.stackcp.net", "cl59-diary", "nXhHC3B/c", "cl59-diary");
-                  $email = mysqli_real_escape_string($link, $_POST["submit_email"]);
-                  $password = mysqli_real_escape_string($link, $_POST["submit_password"]);
-
-                  if (mysqli_connect_error($link)) {
-
-                    die ("Could not connect to database at this time.");
-
-                  } else {
-
-                    $query = "SELECT `password` FROM `users` WHERE `email` = '" . $email . "'";
-
-                    $result = mysqli_query($link, $query);
-
-                    echo $row = mysqli_fetch_array($result);
-
-                  };
-
-                };
-
-              };
-
-            /*if($_POST) {
-
-              $link = mysqli_connect("shareddb1a.hosting.stackcp.net", "cl59-users-ato", "d!CrF.cyx", "cl59-users-ato");
-
-              if(mysqli_connect_error($link)) {
-
-                die ("Server could not be found");
-
-              } else {
-
-                $email = mysqli_real_escape_string($_POST[submit_email]);
-                $password = mysqli_real_escape_string($_POST[submit_password]);
-
-                $error = "";
-
-                if ($email == null ) {
-
-                  $error .= "You have not provided an email.";
-
-                };
-
-                if ($password == null) {
-
-                  $error .= "You have not provided a password.";
-
-                };
-
-              };
-
-              //$query =
-
-              //$row =
-
-            };*/
-
-        ?>
+      <body>
 
         <div class="container">
 
@@ -191,13 +215,13 @@
 
                     <div class="form-group">
 
-                        <input type="text" class="form-control" name="submit_email" placeholder="Email" value=''>
+                        <input type="email" class="form-control" name="submit_email" placeholder="Email" value='<?php if(isset ($_COOKIE["email_cook"])) { echo ($_COOKIE["email_cook"]); } else { echo (""); }; ?>' required>
 
                     </div>
 
                     <div class="form-group">
 
-                        <input type="password" class="form-control" name="submit_password" placeholder="Password" value=''>
+                        <input type="password" class="form-control" name="submit_password" placeholder="Password" required>
 
                     </div>
 
@@ -206,7 +230,7 @@
                         <label class="form-check-label">
 
                             <input type="checkbox" class="form-check-input" name="stay_signed_in" checked>
-                            Save my details
+                            Save my email
 
                         </label>
 
@@ -222,7 +246,7 @@
 
                 </form>
 
-                <div><?php echo($alert); ?></div>
+                <div><?php echo $alert; ?></div>
 
             </div>
 

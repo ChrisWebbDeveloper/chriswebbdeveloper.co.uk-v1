@@ -1,6 +1,120 @@
-<!DOCTYPE html>
+<?php
 
-<?php session_start(); ?>
+  session_start();
+
+  if (isset($_POST)) {
+
+    $error = "";
+    $alert = "";
+
+    if(array_key_exists("submit_email",$_POST) OR array_key_exists("submit_password", $_POST)) {
+
+      //Validating input values email & password
+
+      $email = $_POST["submit_email"];
+      $pass = $_POST["submit_password"];
+
+      if(!isset($email) OR $email == null) {
+
+        $error .= "You have not entered an email <br />";
+
+      } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+        $error .= "The format you have entered for you email is invalid <br />";
+
+      };
+
+      if(!isset($pass) OR $pass == null) {
+
+        $error .= "You have not entered a password <br />";
+
+      };
+
+      if($error != "" OR $error != null) {
+
+        $alert = "<span class ='error'>The following errors are present above: <br />" . $error . "Please fix these and try again.</span>";
+
+      } else {
+
+        $link =		mysqli_connect("shareddb1a.hosting.stackcp.net", "cl59-diary", "nXhHC3B/c", "cl59-diary");		//enter db details
+        $email =	mysqli_real_escape_string($link, $email);
+        $pass =		mysqli_real_escape_string($link, $pass);
+
+        if(mysqli_connect_error()) {
+
+          die("Could not connect to server");
+
+        } else {
+
+          if (isset ($_POST["stay_signed_in"])) {
+
+              setcookie("email_cook", $email, time() + 60 * 60 * 24 * 365);
+
+          } else {
+
+              setcookie("email_cook", '', time() - 3600);
+
+          };
+
+          if(isset($_POST["signup_button"])) {
+
+            $query = "SELECT `email` FROM `users` WHERE `email` = '" . $email . "'";
+
+            $result = mysqli_query($link, $query);
+
+            if(mysqli_num_rows($result) > 0) {
+
+              $alert = "There is already an account with this email. Login instead!";
+
+            } else {
+
+              $query = "INSERT INTO `users` (`email`, `password`) VALUES ('" . $email . "', '" . password_hash($pass, PASSWORD_DEFAULT) . "')";
+
+              if(mysqli_query($link, $query)) {
+
+                $alert = "<span class='success'>You have successfully signed up, try logging in now!</span>";
+
+              } else {
+
+                $alert = "<span class='error'>We could not sign you up at this time. Please try again later.</span>";
+
+              };
+
+            };
+
+          } else if (isset($_POST["login_button"])) {
+
+            $query = "SELECT `id`, `email`, `password` FROM `users` WHERE `email` = '" . $email . "'";
+
+            $result = mysqli_query($link, $query);
+
+            $row = mysqli_fetch_array($result);
+
+            if (password_verify($pass, $row["password"])) {
+
+              $_SESSION["email"] = $row["email"];
+              $_SESSION["id"] = $row["id"];
+              header("Location: login.php");
+
+            } else {
+
+              $alert = "<span class='error'>The login details you have provided are incorrect. Please try again. <span class='switch to_signup'>If you have not got an account, click here to Sign up!</span></span>";
+
+            };
+
+          };
+
+        };
+
+      };
+
+    };
+
+  };
+
+?>
+
+<!DOCTYPE html>
 
 <html>
 
@@ -94,206 +208,20 @@
 
         <!-- END of Training Return Button CSS-->
 
-    </head>
+      </head>
 
-    <body>
+      <body>
 
-      <!-- START of Training Return Button HTML-->
+          <!-- START of Training Return Button HTML-->
 
-		<a href="../../index.html#projects" id="training_button" name="training_button">
-			<div>
-              <p>Click here to return</p>
-              <img src="../../images/landing_logo.png" alt="Dean Webb Developer">
-			</div>
-		</a>
+      		<a href="../../index.html#projects" id="training_button" name="training_button">
+      			<div>
+                    <p>Click here to return</p>
+                    <img src="../../images/landing_logo.png" alt="Dean Webb Developer">
+      			</div>
+      		</a>
 
-      <!-- END of Training Return Button HTML-->
-      
-        <?php
-
-        $error = "";
-        $success = "";
-
-        if ($_POST) {
-
-            $link = mysqli_connect("shareddb1a.hosting.stackcp.net", "cl59-diary", "nXhHC3B/c", "cl59-diary");
-            $email = $_POST["submit_email"];
-            $safe_email = mysqli_real_escape_string($link, $email);
-            $password = $_POST["submit_password"];
-            $safe_password = mysqli_real_escape_string($link, $password);
-
-            if (isset ($_POST["stay_signed_in"])) {
-
-                setcookie("email_cookie", $safe_email, time() + 60 * 60 * 24);
-                setcookie("password_cookie", $safe_password, time() + 60 * 60 * 24);
-
-            } else {
-
-                setcookie("email_cookie", '', time() - 3600);
-                setcookie("password_cookie",'', time() - 3600);
-
-            };
-
-            //Sign-up Form
-
-            if (isset ($_POST["signup_button"])) {
-
-                if ($email == null) {
-
-                    $error .= "The email field is empty. <br />";
-
-                } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
-                    $error .= "The email address is considered invalid.";
-
-                };
-
-                if ($password == null) {
-
-                    $error .= "The password field is empty. <br />";
-
-                };
-
-                if ($error != null) {
-
-                    $error = '<div class="alert alert-danger" role="alert">The following errors are present in your Sign-Up form: <br /><br />' . $error . '</div>';
-
-                } else {
-
-                    if(mysqli_connect_error()) {
-
-                        die ("Could not connect to database");
-
-                    } else {
-
-                        $email_check = "SELECT * FROM users WHERE `email` = '" . $safe_email . "'";
-
-                        $result = mysqli_query($link, $email_check);
-
-                        if (mysqli_num_rows($result) > 0) {
-
-                            $error = '<div class="alert alert-danger" role="alert">The email, ' . $email .  ', is already in use. <strong class="switch to_login">Login</strong> instead!</div>';
-
-                        } else {
-
-                            //Inserting new email into database
-
-                            $insert_email = "INSERT INTO `users` (`email`) VALUES ('" . $safe_email . "')";
-
-                            mysqli_query($link, $insert_email);
-
-                            //Getting id from email
-
-                            $select_id = "SELECT `id` FROM `users` WHERE email = '" . $safe_email . "'";
-
-                            $get_id = mysqli_fetch_array(mysqli_query($link, $select_id));
-
-                            echo $id = $get_id["id"];
-
-                            //Using the id to help secure the password
-
-                            $salt="N:U6+Yb9%?8s@+>2@@rq(+5|#g9GM%6;Ec@1Pk>;UptU#] 8S!ES9vqJaM7ZvUdt";
-                            $secure_password = md5(md5($id . $salt) . $safe_password);
-
-                            //Saving the Secured password into the database
-
-                            $insert_password = "UPDATE `users` SET password = '" . $secure_password . "' WHERE id = " . $id . " AND email = '" . $safe_email . "'";
-
-                            if(mysqli_query($link, $insert_password)) {
-
-                                $success = '<div class="alert alert-success" role="alert">You have successfully signed up!</div>';
-
-                            } else {
-
-                                $error = '<div class="alert alert-danger" role="alert">We could not sign you up at this time. Please try again later!</div>';
-
-                            };
-
-                        };
-
-                    };
-
-                };
-
-            }
-
-            //Login Form
-
-            else if (isset ($_POST["login_button"])) {
-
-                if ($email == null) {
-
-                    $error .= "The email field is empty. <br />";
-
-                } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
-                    $error .= "The email address is considered invalid.";
-
-                };
-
-                if ($password == null) {
-
-                    $error .= "The password field is empty. <br />";
-
-                };
-
-                if ($error != null) {
-
-                    $error = '<div class="alert alert-danger" role="alert">The following errors are present in your Login form: <br /><br />' . $error . '</div>';;
-
-                } else {
-
-                    if(mysqli_connect_error()) {
-
-                        die ("Could not connect to database");
-
-                    } else {
-
-                        //Getting id from email
-
-                        $select_id = "SELECT `id` FROM `users` WHERE email = '" . $safe_email . "'";
-
-                        $get_id = mysqli_fetch_array(mysqli_query($link, $select_id));
-
-                        echo $id = $get_id["id"];
-
-                        //Using the id to help secure the password
-
-                        $salt="N:U6+Yb9%?8s@+>2@@rq(+5|#g9GM%6;Ec@1Pk>;UptU#] 8S!ES9vqJaM7ZvUdt";
-                        $secure_password = md5(md5($id . $salt) . $safe_password);
-
-                        $email_check = "SELECT email FROM `users` WHERE email = '" . $safe_email . "'";
-                        $user_check = "SELECT * FROM `users` WHERE email = '" . $safe_email. "' AND password = '" . $secure_password . "'";
-
-                        $email_result = mysqli_query($link, $email_check);
-                        $user_result = mysqli_query($link, $user_check);
-
-                        if (mysqli_num_rows($email_result) == 0) {
-
-                            $error = '<div class="alert alert-danger" role="alert">The email, ' . $email . ', does not exist in the system. Why not <strong class="switch to_signup">Sign up</strong>?</div>';
-
-                        } else if (mysqli_num_rows($user_result) > 0 ) {
-
-                            $_SESSION["email"] = $email;
-                            $_SESSION["id"] = $id;
-                            header ("Location: login.php");
-
-                        } else {
-
-                            $error = '<div class="alert alert-danger" role="alert">The password is incorrect!</div>';
-
-                        };
-
-                    };
-
-                };
-
-            };
-
-        };
-
-
-        ?>
+          <!-- END of Training Return Button HTML-->
 
         <div class="container">
 
@@ -309,13 +237,13 @@
 
                     <div class="form-group">
 
-                        <input type="email" class="form-control" name="submit_email" placeholder="Email" value='<?php if(isset ($_COOKIE["email_cookie"])) { echo ($_COOKIE["email_cookie"]); } else { echo (""); }; ?>'>
+                        <input type="email" class="form-control" name="submit_email" placeholder="Email" value='<?php if(isset ($_COOKIE["email_cook"])) { echo ($_COOKIE["email_cook"]); } else { echo (""); }; ?>' required>
 
                     </div>
 
                     <div class="form-group">
 
-                        <input type="password" class="form-control" name="submit_password" placeholder="Password" value='<?php if(isset ($_COOKIE["password_cookie"])) { echo ($_COOKIE["password_cookie"]); } else { echo (""); }; ?>'>
+                        <input type="password" class="form-control" name="submit_password" placeholder="Password" required>
 
                     </div>
 
@@ -324,7 +252,7 @@
                         <label class="form-check-label">
 
                             <input type="checkbox" class="form-check-input" name="stay_signed_in" checked>
-                            Save my details
+                            Save my email
 
                         </label>
 
@@ -340,7 +268,7 @@
 
                 </form>
 
-                <div><?php echo $error; echo $success;?></div>
+                <div><?php echo $alert; ?></div>
 
             </div>
 
@@ -362,7 +290,7 @@
 
             });
 
-        </script>
+        </script>        
 
         <!-- START of Training Return Button JS-->
 
@@ -374,6 +302,7 @@
           <script src="../training_button.js"></script>
 
         <!-- END of Training Return Button JS-->
+
 
     </body>
 

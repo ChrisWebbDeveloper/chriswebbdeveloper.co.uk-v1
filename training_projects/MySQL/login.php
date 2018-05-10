@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <?php
 
     session_start();
@@ -11,7 +9,123 @@
     $past_entries = "";
     $link = mysqli_connect("shareddb1a.hosting.stackcp.net", "cl59-diary", "nXhHC3B/c", "cl59-diary");
 
+    //Previous Entries
+
+    if (isset ($_POST["previous"])) {
+
+      if (mysqli_connect_error()) {
+
+        die ("Could not connect to database");
+
+      } else {
+
+        $complete_list = "";
+
+        $previous_entry_query = "SELECT * FROM `diary` WHERE id = '" . $id . "'"; //gets all previous entries
+
+        $previous_fetched = mysqli_query($link, $previous_entry_query);
+
+        $previous_entry = mysqli_fetch_all($previous_fetched); //makes entries into array
+
+        $reversed_entry = array_reverse($previous_entry); //reverses array so most recent comes first
+
+          foreach ($reversed_entry as $row) {
+
+            $string_replacement = str_replace(str_split(" :"),"-",$row[2]); //used to make for unique ids, so modals are all unique. without every modal is most recent modal
+
+            $complete_list .= '<div data-toggle="modal" data-target="#' . $string_replacement . '-modal"><strong>' . $row[2] .
+                              '</strong> &nbsp;&nbsp;&nbsp;' . substr($row[1], 0, 80) . '<br /></div>' .
+                              '<div class="modal fade" id="' . $string_replacement . '-modal" tabindex="-1" role="dialog" aria-labelledby="' . $string_replacement . '-modal-title" aria-hidden="true">
+
+                                <div class="modal-dialog" role="document">
+
+                                  <div class="modal-content">
+
+                                    <div class="modal-header">
+
+                                      <h5 class="modal-title" id="' . $string_replacement . '-modal-title">' . $row[2] . '</h5>
+
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                      <span aria-hidden="true">&times;</span>
+
+                                      </button>
+
+                                    </div>
+
+                                    <div class="modal-body">'
+                                      . $row[1] .
+                                    '</div>
+
+                                    <div class="modal-footer">
+
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                      </div>
+
+                                    </div>
+
+                                  </div>
+
+                                </div>';
+
+                };
+
+                if ($complete_list == "") {
+
+                    $past_entries = '<div class="alert alert-info" role="alert">You have no previous diary entries. Why not write one above?</div>';
+
+                } else {
+
+                    $past_entries = '<div class="alert alert-info" role="alert"> <h5> Your previous entries <small>(Click one to view it!)</small> :</h5> '. $complete_list . '</div>';
+
+                };
+
+            };
+
+        };
+
+        //Save Entry
+
+        if (isset ($_POST["save"])) {
+
+            if (mysqli_connect_error()) {
+
+                die ("Could not connect to database");
+
+            } else {
+
+                $entry = $_POST["diary_text"];
+                $safe_entry = mysqli_real_escape_string($link, $entry);
+
+                $save_entry_query = "INSERT INTO `diary`(id, entry, date) VALUES ('" . $id . "', '" . $safe_entry . "', NOW())";
+
+                if (mysqli_query($link, $save_entry_query)) {
+
+                    $success = '<div class="alert alert-success" role="alert">'. date("Y-m-d h:i:sa") . ': Your entry has been saved!</div>';
+
+                } else {
+
+                    $error = '<div class="alert alert-danger" role="alert">Your entry could not be saved at this time. Please try again later!</div>';
+
+                };
+
+            };
+
+        };
+
+        //Logout
+
+        if (isset ($_POST["logout"])) {
+
+            session_destroy();   // function that Destroys Session
+            header("Location: index.php");
+
+        };
+
 ?>
+
+<!DOCTYPE html>
 
 <html>
 
@@ -96,151 +210,24 @@
           <!-- jQuery Stylesheet -->
           <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
           <!-- Main Stylesheet -->
-          <link rel="stylesheet" type="../../text/css" href="training_button.css">
+          <link rel="stylesheet" type="text/css" href="../training_button.css">
 
         <!-- END of Training Return Button CSS-->
 
-    </head>
+      </head>
 
-    <body>
+      <body>
 
-     <!-- START of Training Return Button HTML-->
+          <!-- START of Training Return Button HTML-->
 
-		<a href="../../index.html#projects" id="training_button" name="training_button">
-			<div>
-              <p>Click here to return</p>
-              <img src="../../images/landing_logo.png" alt="Dean Webb Developer">
-			</div>
-		</a>
+      		<a href="../../index.html#projects" id="training_button" name="training_button">
+      			<div>
+                    <p>Click here to return</p>
+                    <img src="../../images/landing_logo.png" alt="Dean Webb Developer">
+      			</div>
+      		</a>
 
-     <!-- END of Training Return Button HTML-->
-
-        <?php
-
-            //Previous Entries
-
-            if (isset ($_POST["previous"])) {
-
-                if (mysqli_connect_error()) {
-
-                    die ("Could not connect to database");
-
-                } else {
-
-                    $complete_list = "";
-
-                    $previous_entry_query = "SELECT * FROM `diary` WHERE id = '" . $id . "'"; //gets all previous entries
-
-                    $previous_fetched = mysqli_query($link, $previous_entry_query);
-
-                    $previous_entry = mysqli_fetch_all($previous_fetched); //makes entries into array
-
-                    $reversed_entry = array_reverse($previous_entry); //reverses array so most recent comes first
-
-                    foreach ($reversed_entry as $row) {
-
-                        $string_replacement = str_replace(str_split(" :"),"-",$row[2]); //used to make for unique ids, so modals are all unique. without every modal is most recent modal
-
-                        $complete_list .= '<div data-toggle="modal" data-target="#' . $string_replacement . '-modal"><strong>' . $row[2] .
-                                          '</strong> &nbsp;&nbsp;&nbsp;' . substr($row[1], 0, 80) . '<br /></div>' .
-                                          '<div class="modal fade" id="' . $string_replacement . '-modal" tabindex="-1" role="dialog" aria-labelledby="' . $string_replacement . '-modal-title" aria-hidden="true">
-
-                                              <div class="modal-dialog" role="document">
-
-                                                  <div class="modal-content">
-
-                                                      <div class="modal-header">
-
-                                                          <h5 class="modal-title" id="' . $string_replacement . '-modal-title">' . $row[2] . '</h5>
-
-                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-                                                                  <span aria-hidden="true">&times;</span>
-
-                                                              </button>
-
-                                                      </div>
-
-                                                      <div class="modal-body">'
-                                                      . $row[1] .
-                                                      '</div>
-
-                                                      <div class="modal-footer">
-
-                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                                                      </div>
-
-                                                  </div>
-
-                                              </div>
-
-                                          </div>';
-
-                                          //fix this so that when you click each one, a different modal
-                                          //showing the correct entry and title (date) shows
-
-                                          //also work on css so when you hover over an entry, it bolds out
-                                          //or something like that
-
-                                          //also put the logout option in, but not in this section.
-                                          //will have own section like 'previous' and 'save have'
-
-                    };
-
-                    if ($complete_list == "") {
-
-                        $past_entries = '<div class="alert alert-info" role="alert">You have no previous diary entries. Why not write one above?</div>';
-
-                    } else {
-
-                        $past_entries = '<div class="alert alert-info" role="alert"> <h5> Your previous entries <small>(Click one to view it!)</small> :</h5> '. $complete_list . '</div>';
-
-                    };
-
-                };
-
-            };
-
-            //Save Entry
-
-            if (isset ($_POST["save"])) {
-
-                if (mysqli_connect_error()) {
-
-                    die ("Could not connect to database");
-
-                } else {
-
-                    $entry = $_POST["diary_text"];
-                    $safe_entry = mysqli_real_escape_string($link, $entry);
-
-                    $save_entry_query = "INSERT INTO `diary`(id, entry, date) VALUES ('" . $id . "', '" . $safe_entry . "', NOW())";
-
-                    if (mysqli_query($link, $save_entry_query)) {
-
-                        $success = '<div class="alert alert-success" role="alert">'. date("Y-m-d h:i:sa") . ': Your entry has been saved!</div>';
-
-                    } else {
-
-                        $error = '<div class="alert alert-danger" role="alert">Your entry could not be saved at this time. Please try again later!</div>';
-
-                    };
-
-                };
-
-            };
-
-            //Logout
-
-            if (isset ($_POST["logout"])) {
-
-                session_destroy();   // function that Destroys Session
-                header("Location: index.php");
-
-            };
-
-        ?>
+          <!-- END of Training Return Button HTML-->
 
         <div class="container">
 
@@ -264,7 +251,7 @@
 
             </div>
 
-        </div>
+        </div>        
 
         <!-- START of Training Return Button JS-->
 
@@ -273,9 +260,10 @@
           <!-- jQuery UI -->
           <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
           <!-- Main Script -->
-          <script src="../../training_button.js"></script>
+          <script src="../training_button.js"></script>
 
         <!-- END of Training Return Button JS-->
+
 
     </body>
 
