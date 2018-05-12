@@ -116,7 +116,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
     <head>
 
@@ -214,7 +214,7 @@
           <!-- jQuery Stylesheet -->
           <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
           <!-- Main Stylesheet -->
-          <link rel="stylesheet" type="text/css" href="../training_button.css">
+          <link rel="stylesheet" type="text/css" href="../training_button-min.css">
 
         <!-- END of Training Return Button CSS-->
 
@@ -309,7 +309,7 @@
           <!-- jQuery UI -->
           <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
           <!-- Main Script -->
-          <script src="../training_button.js"></script>
+          <script src="../training_button-min.js"></script>
 
         <!-- END of Training Return Button JS-->
 

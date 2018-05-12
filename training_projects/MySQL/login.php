@@ -127,7 +127,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
     <head>
 
@@ -220,7 +220,7 @@
           <!-- jQuery Stylesheet -->
           <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
           <!-- Main Stylesheet -->
-          <link rel="stylesheet" type="text/css" href="../training_button.css">
+          <link rel="stylesheet" type="text/css" href="../training_button-min.css">
 
         <!-- END of Training Return Button CSS-->
 
