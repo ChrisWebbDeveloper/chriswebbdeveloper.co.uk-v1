@@ -1,285 +1,139 @@
 <?php
 
-  session_start();
-
-  if (isset($_POST)) {
-
+    $weather = "";
     $error = "";
-    $alert = "";
 
-    if(array_key_exists("submit_email",$_POST) OR array_key_exists("submit_password", $_POST)) {
+    if ($_GET['city']) {
 
-      //Validating input values email & password
+      $url = "http://api.openweathermap.org/data/2.5/weather?q=" . rawurlencode($_GET['city']) . "&appid=c320f38054db9fff28682e0ceb376e59";
 
-      $email = $_POST["submit_email"];
-      $pass = $_POST["submit_password"];
+      //print_r($url);
 
-      if(!isset($email) OR $email == null) {
+      $urlContents =  file_get_contents($url);
 
-        $error .= "You have not entered an email <br />";
+      //print_r($urlContents);
 
-      } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $weatherArray = json_decode($urlContents, true);
 
-        $error .= "The format you have entered for you email is invalid <br />";
+      //print_r($weatherArray);
 
-      };
+      if($weatherArray["cod"] == "200") {
 
-      if(!isset($pass) OR $pass == null) {
+        $weather = "<div id='success' class='alert alert-success'>The weather in <strong>" . $_GET['city'] . "</strong> is currently <strong>'" . $weatherArray['weather'][0]['description'] . "'</strong>.";
 
-        $error .= "You have not entered a password <br />";
+        $tempInCelcius = $weatherArray['main']['temp'] - 273;
 
-      };
-
-      if($error != "" OR $error != null) {
-
-        $alert = "<span class ='error'>The following errors are present above: <br />" . $error . "Please fix these and try again.</span>";
+        $weather .= " The temperature is <strong>" . round($tempInCelcius) . "&deg;C</strong> and the wind speed is <strong>" . $weatherArray['wind']['speed'] . "m/s<strong>.</div>";
 
       } else {
 
-        $link =		mysqli_connect("shareddb1a.hosting.stackcp.net", "cl59-diary", "nXhHC3B/c", "cl59-diary");		//enter db details
-        $email =	mysqli_real_escape_string($link, $email);
-        $pass =		mysqli_real_escape_string($link, $pass);
-
-        if(mysqli_connect_error()) {
-
-          die("Could not connect to server");
-
-        } else {
-
-          if (isset ($_POST["stay_signed_in"])) {
-
-              setcookie("email_cook", $email, time() + 60 * 60 * 24 * 365);
-
-          } else {
-
-              setcookie("email_cook", '', time() - 3600);
-
-          };
-
-          if(isset($_POST["signup_button"])) {
-
-            $query = "SELECT `email` FROM `users` WHERE `email` = '" . $email . "'";
-
-            $result = mysqli_query($link, $query);
-
-            if(mysqli_num_rows($result) > 0) {
-
-              $alert = "There is already an account with this email. Login instead!";
-
-            } else {
-
-              $query = "INSERT INTO `users` (`email`, `password`) VALUES ('" . $email . "', '" . password_hash($pass, PASSWORD_DEFAULT) . "')";
-
-              if(mysqli_query($link, $query)) {
-
-                $alert = "<span class='success'>You have successfully signed up, try logging in now!</span>";
-
-              } else {
-
-                $alert = "<span class='error'>We could not sign you up at this time. Please try again later.</span>";
-
-              };
-
-            };
-
-          } else if (isset($_POST["login_button"])) {
-
-            $query = "SELECT `id`, `email`, `password` FROM `users` WHERE `email` = '" . $email . "'";
-
-            $result = mysqli_query($link, $query);
-
-            $row = mysqli_fetch_array($result);
-
-            if (password_verify($pass, $row["password"])) {
-
-              $_SESSION["email"] = $row["email"];
-              $_SESSION["id"] = $row["id"];
-              header("Location: login.php");
-
-            } else {
-
-              $alert = "<span class='error'>The login details you have provided are incorrect. Please try again. <span class='switch to_signup'>If you have not got an account, click here to Sign up!</span></span>";
-
-            };
-
-          };
-
-        };
+        $error = "<div id='danger' class='alert alert-danger'>The city you have entered could not be found, please try again.</div>";
 
       };
 
     };
 
-  };
-
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 
 <html>
 
-    <head>
+<head>
 
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108066932-1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <title>PHP Project - Weather Scraper</title>
 
-        gtag('config', 'UA-108066932-1');
-      </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css" integrity="sha256-y4TDcAD4/j5o4keZvggf698Cr9Oc7JZ+gGMax23qmVA=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 
-        <title>Secret Diary</title>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js" integrity="sha256-55Jz3pBCF8z9jBO1qQ7cIf0L+neuPTD1u7Ytzrp2dqo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js" integrity="sha256-m2ByX2d6bw2LPNGOjjELQGPrn6XyouMV9RuVzKhJ5hA=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        body {
 
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+            background: url(images/background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+        }
 
-        <style type="text/css">
+        .container {
 
-            body {
+            text-align: center;
+            padding-top: 100px;
 
-                background: url(images/background.jpg);
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
+        }
 
-            }
+    </style>
 
-            h1 {
+    <!--<script>
 
-                padding: 100px 0px 20px 0px;
-                text-align: center;
+    $(document).ready(function() {
 
-            }
+        $("form").submit(function(event) {
 
-            p {
+                var error = "";
 
-                text-align: center;
+            if($("#city").val() == "") {
 
-            }
+                error += "You have not typed in a city!";
 
-            form {
+            };
 
-                text-align: center;
+            if (error != "") {
 
-            }
+                $("#alert_box").html('<div id="error" class="alert alert-danger">' + error + '</div>');
 
-            button {
+                return false;
 
-                margin: 15px 0px;
+            } else {
 
-            }
+                return true;
 
-            .signup {
+            };
 
-                display:none;
+        });
 
-            }
+    });
 
-            .switch {
 
-                color: #0275d8;
+  </script>-->
 
-            }
+</head>
 
-            .switch:hover {
+<body>
 
-                color: #014C8C;
-                text-decoration: underline;
-                cursor: pointer;
+    <div class="container">
 
-            }
+        <h1>What's the Weather?</h1>
 
-            #box {
+        <p>Enter the name of a city.</p>
 
-                width: 60%;
-                margin: auto;
+        <br />
 
-            }
+        <form method="get">
 
-        </style>
+            <div class="form-group">
 
-      </head>
-
-      <body>
-
-        <div class="container">
-
-            <div id="box">
-
-                <h1>Secret Diary</h1>
-
-                <p class="signup"><strong>Hide it here! Sign up below!</strong></p>
-
-                <p class="login"><strong>Here to write some more? Login below!</strong></p>
-
-                <form name="form" method="post">
-
-                    <div class="form-group">
-
-                        <input type="email" class="form-control" name="submit_email" placeholder="Email" value='<?php if(isset ($_COOKIE["email_cook"])) { echo ($_COOKIE["email_cook"]); } else { echo (""); }; ?>' required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <input type="password" class="form-control" name="submit_password" placeholder="Password" required>
-
-                    </div>
-
-                    <div class="form-check">
-
-                        <label class="form-check-label">
-
-                            <input type="checkbox" class="form-check-input" name="stay_signed_in" checked>
-                            Save my email
-
-                        </label>
-
-                    </div>
-
-                    <button type="submit" class="btn btn-primary signup" name="signup_button">Sign up</button>
-
-                    <p class="signup">Already have an account with us? Why not <span class="switch to_login">Login</span> instead?</p>
-
-                    <button type="submit" class="btn btn-success login" name="login_button">Login</button>
-
-                    <p class="login">New here? <span class="switch to_signup">Click here to Sign up!</span></p>
-
-                </form>
-
-                <div><?php echo $alert; ?></div>
+                <input class="form-control input-lg" id="city" name="city" type="text" placeholder="Type in your city here. Eg, 'London'">
 
             </div>
 
-        </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
-        <script type="text/javascript">
+        </form>
 
-            $(".to_login").click(function() {
+    <br />
 
-                $(".login").show();
-                $(".signup").hide();
+    <div id="alert_box" name="alert_box"><?php echo $error; echo $weather; ?></div>
 
-            });
+    </div>
 
-            $(".to_signup").click(function() {
-
-                $(".login").hide();
-                $(".signup").show();
-
-            });
-
-        </script>
-
-    </body>
+</body>
 
 </html>
