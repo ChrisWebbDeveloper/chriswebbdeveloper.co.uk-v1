@@ -20,7 +20,7 @@
         width: 100%;
       }
 
-      h1 {
+      h1, h5 {
         padding-bottom: 20px;
         text-align: center;
       }
@@ -43,7 +43,7 @@
       }
 
       .btn-info {
-        margin-top: 50px;
+        margin-top: 30px;
         text-align: center;
       }
 
@@ -57,13 +57,14 @@
 
       <div id="box">
 
-        <h1>Find my Postcode</h1>
+        <h1>Find my Postal Code</h1>
+
+        <h5>Provide an address below and its postal code will be found!</h5>
 
         <form method="GET">
 
           <div class="form-group">
-            <label for="address">Address</label>
-            <input class="form-control" type="text" name="address" placeholder="Oxford Circus, London" required>
+            <input class="form-control" type="text" name="address" placeholder="11 Oxford Circus, London" required>
           </div>
 
           <div class="form-group">
@@ -72,13 +73,15 @@
 
         </form>
 
+        <div id="alert_msg"></div>
+
       </div>
 
     </div>
 
   </body>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
@@ -90,21 +93,45 @@
 
         e.preventDefault();
 
-        var $address = $('[name="address"]').val().replace(/\ /g, '+');
-        var $url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + $address + '&key=AIzaSyD424053w20Y1XXhF-ISEn6scZ68MRaP5A';
+        var $address = $('[name="address"]').val();
+        var $url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent($address) + '&key=AIzaSyD424053w20Y1XXhF-ISEn6scZ68MRaP5A';
+        var $error_msg;
+        var $success_msg;
 
-        //ajax not a function, try expanding the scope so is not in other functions
 
         $.ajax({
 
           url:      $url,
           type:     "GET",
           success:  function(data) {
-                      $.each(data, function(key, value){
-                          alert(key);
-                      });
+
+                      if(data.status == "ZERO_RESULTS") {
+                        $error_msg = "A postcode could not be found for the address '" + $address + "', please try again.";
+                      } else {
+                        $.each(data.results[0].address_components, function(key, value) {
+                            if(value.types[0] == "postal_code") {
+                              $success_msg = "The address, '" + $address + "', has a Postal Code of <strong>" + value.long_name + "</strong>.";
+                            };
+                        });
+                        if ($success_msg == null) {
+                          $error_msg = "The address provided, '" + $address + "', is too vague, please try and be more specific.";
+                        }
+                      };
+
+                      if ($success_msg != null) {
+                        $("#alert_msg").html($success_msg);
+                        $("#alert_msg").addClass("alert alert-success");
+                        $("#alert_msg").css("margin-top", "30px");
+                      } else if ($error_msg != "") {
+                        $("#alert_msg").html($error_msg);
+                        $("#alert_msg").addClass("alert alert-danger");
+                        $("#alert_msg").css("margin-top", "30px");
+                      };
+
                     }
-        })
+        });
+
+
 
       });
 
