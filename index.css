@@ -228,19 +228,6 @@ header {
   background-size: auto 35%;
 }
 
-#Hannah_Clarke_Films {
-  background:
-    linear-gradient(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.4)),
-    #2095ad;
-}
-
-#Hannah_Clarke_Films:before {
-  background-image: url("images/professional_projects/hannah_clarke_films_logo.png");
-  background-size: auto 30%;
-}
-
 #Dean_Webb_Developer {
   background:
   linear-gradient(
@@ -370,11 +357,11 @@ header {
     linear-gradient(
     rgba(0, 0, 0, 0.4),
     rgba(0, 0, 0, 0.4)),
-    #000000;
+    #00aced;
 }
 
 #APIs:before {
-  /*background-image: url("images/training_projects/API_logo.png");*/
+  background-image: url("images/training_projects/API_logo.png");
 }
 
 #Mobile_Apps {
