@@ -1,7 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My App</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108066932-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-108066932-1');
+    </script>
+
+    <title>Mobile Apps Project - Email Client App</title>
+
+    <!-- START of Training Return Button CSS-->
+
+      <!-- Raleway Font -->
+      <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,700,400italic' rel='stylesheet' type='text/css'>
+      <!-- jQuery Stylesheet -->
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+      <!-- Main Stylesheet -->
+      <link rel="stylesheet" type="text/css" href="../training_button-min.css">
+
+      <style>
+        #training_button img {
+        	padding-top: 16px;
+        }
+      </style>
+
+    <!-- END of Training Return Button CSS-->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
     <link rel="stylesheet" href="app.min.css">
     <style>
@@ -24,6 +53,19 @@
   </head>
 
   <body>
+
+    <!-- START of Training Return Button HTML-->
+
+    <a href="../../index.html#projects" id="training_button" name="training_button">
+      <div>
+              <p>Click here to return</p>
+              <img src="../../images/landing_logo.png" alt="Dean Webb Developer">
+      </div>
+    </a>
+
+    <!-- END of Training Return Button HTML-->
+
+
     <div class="app-page" data-page="home">
       <div class="app-topbar blue">
         <div class="app-title">Send An Email</div>
@@ -262,5 +304,17 @@
     };
 
     </script>
+
+    <!-- START of Training Return Button JS-->
+
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <!-- jQuery UI -->
+      <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+      <!-- Main Script -->
+      <script src="../training_button-min.js"></script>
+
+    <!-- END of Training Return Button JS-->
+
   </body>
 </html>

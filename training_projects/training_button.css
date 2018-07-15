@@ -6,7 +6,7 @@
 	text-align: center;
 	position: fixed;
 	bottom: 5%;
-  	right: 5%;
+  right: 5%;
 	border: white 2px solid;
 	z-index: 9999999;
 	padding: 0;
@@ -14,22 +14,22 @@
 }
 
 #training_button:link {
-  	text-decoration: none;
+  text-decoration: none;
 }
 
 #training_button p {
-  	font-family: raleway, sans-serif;
+  font-family: raleway, sans-serif;
 	color: white;
 	text-decoration: none;
-  	padding: 0;
-  	margin-top: 8px;
-  	text-align: center;
+  padding: 0;
+  margin-top: 8px;
+  text-align: center;
 }
 
 #training_button img {
-	height: 50px;
+	height: 40px;
 	width: auto;
-	margin-top: -10px;
+	bottom: 10px;
 }
 
 @media only screen and (max-width: 998px) and (orientation: portrait) {
@@ -42,7 +42,7 @@
       	border: none;
       	border-top: white 2px solid;
 	}
-  
+
   	#training_button p {
       	display: none;
 	}
@@ -52,9 +52,5 @@
 		width: auto;
 		margin-top: 2vh;
 	}
-  
-  	
-
-
 
 }

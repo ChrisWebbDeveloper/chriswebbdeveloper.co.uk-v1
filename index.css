@@ -369,11 +369,11 @@ header {
     linear-gradient(
     rgba(0, 0, 0, 0.4),
     rgba(0, 0, 0, 0.4)),
-    #000000;
+    #00D7FC;
 }
 
 #Mobile_Apps:before {
-  /*background-image: url("images/training_projects/MobileApp_logo.png");*/
+  background-image: url("images/training_projects/Mobile_Apps_logo.png");
 }
 
 #Python {
