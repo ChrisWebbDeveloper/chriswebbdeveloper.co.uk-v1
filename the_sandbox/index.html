@@ -1,9 +1,3 @@
-<?php
-
-  session_start();
-
-?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,6 +10,16 @@
         text-align: center;
         padding: 10px 0;
       }
+
+      .red {
+        background: #E54;
+      }
+
+      .blue {
+        background: #39D;
+        color: #FFF;
+      }
+
     </style>
   </head>
 
@@ -68,8 +72,6 @@
     <script src="app.min.js"></script>
     <script>
 
-	/////////////////////////All now works as expected
-	/////////////////////////Test on fresh (delete all previous localstorage)
 	/////////////////////////To add AJAX and PHP mailer
 	/////////////////////////Add PHP validation
 	/////////////////////////Add messages on email successfully sending, failing, etc
@@ -83,26 +85,57 @@
         } else {
 		      $("#previous-recipients-div").empty();
           for(var $i = 0; $i < (JSON.parse(localStorage.getItem("recipients"))).length; $i++) {
-            var $divString = '<div class="app-button move-to-email previous-recipient" data-target="email-page">' + JSON.parse(localStorage.getItem("recipients"))[$i] + '</div>';
+            var $divString = '<div class="app-button move-to-email" data-target="email-page">' + JSON.parse(localStorage.getItem("recipients"))[$i] + '</div>';
             $("#previous-recipients-div").append($divString);
     		  };
     		};
       });
 
 	    //Set 'To' on email to the selected email's text
-      $(page).on('click', '.previous-recipient', function() {
-    		$("input[name=email-to]").val($(this).text());
+      $(page).on('click', '.move-to-email', function() {
+        var $SetEmailTo = $(this).text();
+
+        //if not sending to new user, set
+        if($SetEmailTo != "Send to new user"){
+          $("input[name=email-to]").val($SetEmailTo);
+
+          //Set 'to' recipient storage value
+          localStorage.setItem("recipient", $SetEmailTo);
+        } else {
+          //if new user, keep empty
+          localStorage.setItem("recipient", "");
+        };
+
       });
 
     });
 
     App.controller('email-page', function (page) {
 
+      function classChange(color, addOrRemove) {
+        if(addOrRemove == 'add') {
+          $("#email-alert").parent().addClass(color);
+        } else if (addOrRemove =='remove') {
+          $("#email-alert").parent().removeClass(color);
+        };
+      };
+
 	    //Whenever page is shown (on open, load, etc), set sender if local storage is set
       $(page).on('appShow', function() {
         if(localStorage.getItem("sender") != null) {
 	        $("input[name=email-from]").val(localStorage.getItem("sender"));
 	      };
+        if(localStorage.getItem("recipient") != null) {
+          $("input[name=email-to]").val(localStorage.getItem("recipient"));
+	      };
+      });
+
+      //on text change
+
+      $(page).on('input textarea', function(event) {
+        classChange('blue', 'remove');
+        classChange('red', 'remove');
+        $("#email-alert").html("<p>Click below to send an email!</p>");
       });
 
       //Send button has been clicked
@@ -135,6 +168,8 @@
         };
 
         if ($EmailToFromError != "") {
+          classChange('blue', 'remove');
+          classChange('red', 'add');
           $("#email-alert").html("<p>The following errors are present in your submission. You cannot send the email until these are fixed:</p><br /><p>" + $EmailToFromError + "</p>");
           event.preventDefault();
           return false;
@@ -200,13 +235,23 @@
 
         //AJAX to post to mailer
         $.ajax({
+          type: 'POST',
           url: 'mailer.php',
-          timeout: 5000,
-          success: function(){
-             alert('request successful');
+          data: {
+            sender:    $EmailFromVal,
+            recipient: $EmailToVal,
+            subject:   $EmailSubVal,
+            message:   $EmailMsgVal
           },
-          fail: function(){
-             alert('request failed');
+          success: function(xhr) {
+            classChange('red', 'remove');
+            classChange('blue', 'add');
+            $("#email-alert").html("<p>Email successfully sent!</p>");
+          },
+          error: function(xhr) {
+            classChange('blue', 'remove');
+            classChange('red', 'add');
+            $("#email-alert").html("Error - Email could not be sent. Please try again later!");
           }
         });
 
