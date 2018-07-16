@@ -284,7 +284,7 @@
           success: function(xhr) {
             classChange('red', 'remove');
             classChange('blue', 'add');
-            $("#email-alert").html("<p>Email successfully sent!</p>");
+            $("#email-alert").html("<p>Email successfully sent!</p><p>For security purposes, all emails will send to dean@deanwebbdeveloper.com to prevent spam, sorry!</p>");
           },
           error: function(xhr) {
             classChange('blue', 'remove');
