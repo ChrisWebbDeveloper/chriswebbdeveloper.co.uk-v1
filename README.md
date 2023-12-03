@@ -15,14 +15,6 @@
                 <li><a href="#tech-stack">Tech Stack</a></li>
             </ul>
         </li>
-        <li>
-            <a href="#getting-started">Getting Started</a>
-            <ul>
-                <li><a href="#prerequisites">Prerequisites</a></li>
-                <li><a href="#installation"></a>Installation</li>
-            </ul>
-        </li>
-        <li><a href="#usage"></a>Usage</li>
         <li><a href="#acknowledgements">Acknowledgements</a></li>
     </ul>
 </details>
