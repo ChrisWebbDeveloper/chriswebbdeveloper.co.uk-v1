@@ -1,6 +1,6 @@
 # chriswebbdeveloper.co.uk
 
-> [!INFO]
+> [!NOTE]
 > This is an old version of the project, kept for posterity. Please see the [main branch](https://github.com/ChrisWebbDeveloper/cv) for the latest version of this website
 
 > [!CAUTION]
