@@ -1,7 +1,7 @@
 # chriswebbdeveloper.co.uk
 
 > [!NOTE]
-> This is an old version of the project, kept for posterity. Please see the [main branch](https://github.com/ChrisWebbDeveloper/cv) for the latest version of this website
+> This is an old version of the project, kept for posterity. Please see the [main branch](https://github.com/ChrisWebbDeveloper/chriswebbdeveloper.co.uk) for the latest version of this website
 
 > [!CAUTION]
 > PHP, MySQL, API section and any external links will likely no longer function due to being out of date. As this project is deprecated these will not be updated
