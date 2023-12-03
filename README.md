@@ -30,15 +30,15 @@ It includes links to examples of learned technologies, as well as other websites
 This project also includes minified versions of the styling and script.
 
 ### Tech Stack
-- [![HTML5](https://img.shields.io/badge/HTML5-dd4b25?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
-- [![CSS3](https://img.shields.io/badge/CSS3-254BDD?style=for-the-badge&logo=css3)](https://w3.org/Style/CSS/Overview.en.html)
-- [![JavaScript](https://img.shields.io/badge/JavaScript-EFD81D?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=78CFF5)](https://jquery.com/)
-- [![Bootstrap](https://img.shields.io/badge/Bootstrap-702CF5?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-- [![PHP](https://img.shields.io/badge/PHP-7A86B8?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
-- [![MySQL](https://img.shields.io/badge/MySQL-2b5d80?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com/)
-- ![REST APIs](https://img.shields.io/badge/REST%20APIs-444444?style=for-the-badge)
-- [![Python](https://img.shields.io/badge/Python-FFDA4C?style=for-the-badge&logo=python)](https://python.org/)
+[![HTML5](https://img.shields.io/badge/HTML5-dd4b25?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Glossary/HTML5) &nbsp;
+[![CSS3](https://img.shields.io/badge/CSS3-254BDD?style=for-the-badge&logo=css3)](https://w3.org/Style/CSS/Overview.en.html) &nbsp;
+[![JavaScript](https://img.shields.io/badge/JavaScript-EFD81D?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) &nbsp;
+[![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=78CFF5)](https://jquery.com/) &nbsp;
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-702CF5?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) &nbsp;
+[![PHP](https://img.shields.io/badge/PHP-7A86B8?style=for-the-badge&logo=php&logoColor=white)](https://php.net) &nbsp;
+[![MySQL](https://img.shields.io/badge/MySQL-2b5d80?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com/) &nbsp;
+![REST APIs](https://img.shields.io/badge/REST%20APIs-444444?style=for-the-badge) &nbsp;
+[![Python](https://img.shields.io/badge/Python-FFDA4C?style=for-the-badge&logo=python)](https://python.org/)
 
 
 ## Acknowledgements
