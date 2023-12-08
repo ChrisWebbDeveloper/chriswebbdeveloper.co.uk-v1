@@ -21,7 +21,7 @@
 
 
 ## About the Project
-![chriswebbdeveloper.co.uk](https://github.com/ChrisWebbDeveloper/chris-webb-developer-1/assets/19428849/380b3ab8-f84b-4f6f-b1d6-66fdf65a3aab)
+![chriswebbdeveloper.co.uk](https://github.com/ChrisWebbDeveloper/chriswebbdeveloper.co.uk-v1/assets/19428849/d1bae2ec-ce44-4573-8ffd-ca373564bf74)
 
 The original build for the chriswebbdeveloper.co.uk, then named deanwebbdeveloper.com. A portfolio of my skills and projects, it utilises HTML5, CSS3, jQuery and a PHP mailer to present my current work and experience.
 
